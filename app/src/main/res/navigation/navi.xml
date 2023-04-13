@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navi"
+    app:startDestination="@id/splashScreen1">
+
+    <fragment
+        android:id="@+id/splashScreen1"
+        android:name="com.example.onlinecourse.SplashScreen1"
+        android:label="fragment_splash_screen1"
+        tools:layout="@layout/fragment_splash_screen1" >
+        <action
+            android:id="@+id/action_splashScreen1_to_splashScreen2"
+            app:destination="@id/splashScreen2" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen2"
+        android:name="com.example.onlinecourse.SplashScreen2"
+        android:label="fragment_splash_screen2"
+        tools:layout="@layout/fragment_splash_screen2" >
+        <action
+            android:id="@+id/action_splashScreen2_to_splashScreen3"
+            app:destination="@id/splashScreen3" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen3"
+        android:name="com.example.onlinecourse.SplashScreen3"
+        android:label="fragment_splash_screen3"
+        tools:layout="@layout/fragment_splash_screen3" >
+        <action
+            android:id="@+id/action_splashScreen3_to_splashScreen4"
+            app:destination="@id/splashScreen4" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen4"
+        android:name="com.example.onlinecourse.SplashScreen4"
+        android:label="fragment_splash_screen4"
+        tools:layout="@layout/fragment_splash_screen4" />
+</navigation>
