@@ -36,5 +36,14 @@
         android:id="@+id/splashScreen4"
         android:name="com.example.onlinecourse.SplashScreen4"
         android:label="fragment_splash_screen4"
-        tools:layout="@layout/fragment_splash_screen4" />
+        tools:layout="@layout/fragment_splash_screen4" >
+        <action
+            android:id="@+id/action_splashScreen4_to_createAcc"
+            app:destination="@id/createAcc" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAcc"
+        android:name="com.example.onlinecourse.CreateAcc"
+        android:label="fragment_create_acc"
+        tools:layout="@layout/fragment_create_acc" />
 </navigation>
