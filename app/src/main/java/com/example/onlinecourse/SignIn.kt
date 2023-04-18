@@ -1,10 +1,15 @@
 package com.example.onlinecourse
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.example.onlinecourse.databinding.FragmentSignInBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +38,26 @@ class SignIn : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        var binding = FragmentSignInBinding.inflate(inflater, container, false)
+
+        var text = binding.name.toString()
+        binding.signin.setOnClickListener {
+            val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+            val editor = sharedPreference?.edit()
+            editor?.putString("mail", text)
+            editor?.apply()
+        }
+
+
+        var toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+        val activity : AppCompatActivity = getActivity() as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_signIn_to_createAcc3 )}
+        binding.signup.setOnClickListener {
+            findNavController().navigate(R.id.action_signIn_to_signUp)
+        }
+        return binding.root
     }
 
     companion object {

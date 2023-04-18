@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.example.onlinecourse.databinding.FragmentSignUpBinding
 
 
 private const val ARG_PARAM1 = "param1"
@@ -27,8 +30,16 @@ class SignUp : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        val binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        var toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+        val activity : AppCompatActivity = getActivity() as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { findNavController().navigate(R.id.action_signUp_to_createAcc3 )}
+        binding.signin.setOnClickListener {
+            findNavController().navigate(R.id.action_signUp_to_signIn)
+        }
+        return binding.root
     }
 
     companion object {

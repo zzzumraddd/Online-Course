@@ -16,12 +16,10 @@ class SplashScreen4 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSplashScreen4Binding.inflate(inflater, container, false)
-        binding.next.setOnClickListener {
-            findNavController().navigate(R.id.action_splashScreen4_to_createAcc)
+        binding.next2.setOnClickListener {
+         findNavController().navigate(R.id.action_splashScreen4_to_createAcc3)
         }
         return binding.root
-
-
     }
 
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScreen1_to_splashScreen2"
             app:destination="@id/splashScreen2" />
+        <action
+            android:id="@+id/action_splashScreen1_to_userPage"
+            app:destination="@id/userPage" />
     </fragment>
     <fragment
         android:id="@+id/splashScreen2"
@@ -38,19 +41,19 @@
         android:label="fragment_splash_screen4"
         tools:layout="@layout/fragment_splash_screen4" >
         <action
-            android:id="@+id/action_splashScreen4_to_createAcc"
-            app:destination="@id/createAcc" />
+            android:id="@+id/action_splashScreen4_to_createAcc3"
+            app:destination="@id/createAcc3" />
     </fragment>
     <fragment
-        android:id="@+id/createAcc"
+        android:id="@+id/createAcc3"
         android:name="com.example.onlinecourse.CreateAcc"
         android:label="fragment_create_acc"
         tools:layout="@layout/fragment_create_acc" >
         <action
-            android:id="@+id/action_createAcc_to_signIn"
+            android:id="@+id/action_createAcc3_to_signIn"
             app:destination="@id/signIn" />
         <action
-            android:id="@+id/action_createAcc_to_signUp"
+            android:id="@+id/action_createAcc3_to_signUp"
             app:destination="@id/signUp" />
     </fragment>
     <fragment
@@ -61,6 +64,12 @@
         <action
             android:id="@+id/action_signIn_to_signUp"
             app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_signIn_to_createAcc3"
+            app:destination="@id/createAcc3" />
+        <action
+            android:id="@+id/action_signIn_to_userPage"
+            app:destination="@id/userPage" />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -70,5 +79,16 @@
         <action
             android:id="@+id/action_signUp_to_signIn"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_signUp_to_createAcc3"
+            app:destination="@id/createAcc3" />
+        <action
+            android:id="@+id/action_signUp_to_userPage"
+            app:destination="@id/userPage" />
     </fragment>
+    <fragment
+        android:id="@+id/userPage"
+        android:name="com.example.onlinecourse.UserPage"
+        android:label="fragment_user_page"
+        tools:layout="@layout/fragment_user_page" />
 </navigation>

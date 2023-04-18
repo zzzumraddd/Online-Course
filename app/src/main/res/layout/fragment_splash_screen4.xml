@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/next"
+        android:id="@+id/next2"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="300dp"
         android:layout_height="55dp"
@@ -29,5 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

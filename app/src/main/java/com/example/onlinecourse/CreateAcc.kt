@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentCreateAccBinding
 
 class CreateAcc : Fragment() {
-    // TODO: Rename and change types of parameters
 
 
     override fun onCreateView(
@@ -18,10 +17,10 @@ class CreateAcc : Fragment() {
     ): View? {
         val binding = FragmentCreateAccBinding.inflate(layoutInflater, container, false)
         binding.signin.setOnClickListener {
-            findNavController().navigate(R.id.action_createAcc_to_signIn)
+            findNavController().navigate(R.id.action_createAcc3_to_signIn)
         }
         binding.signup.setOnClickListener {
-            findNavController().navigate(R.id.action_createAcc_to_signIn)
+            findNavController().navigate(R.id.action_createAcc3_to_signUp)
         }
         return binding.root
     }
