@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentSplashScreen4Binding
 
 class SplashScreen4 : Fragment() {
@@ -15,7 +16,12 @@ class SplashScreen4 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSplashScreen4Binding.inflate(inflater, container, false)
+        binding.next.setOnClickListener {
+            findNavController().navigate(R.id.action_splashScreen4_to_createAcc)
+        }
         return binding.root
+
+
     }
 
 }
