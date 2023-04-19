@@ -44,10 +44,10 @@ class UserPage : Fragment() {
                     parentFragmentManager.beginTransaction().replace(R.id.container, Inbox()).commit()
                 }
                 R.id.transaction ->{
-
+                    parentFragmentManager.beginTransaction().replace(R.id.container, Transaction()).commit()
                 }
                 R.id.profile ->{
-
+                    parentFragmentManager.beginTransaction().replace(R.id.container, Profile()).commit()
                 }
             }
         true

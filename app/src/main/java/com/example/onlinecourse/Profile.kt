@@ -1,10 +1,14 @@
 package com.example.onlinecourse
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.example.onlinecourse.databinding.FragmentProfileBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +37,25 @@ class Profile : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val binding = FragmentProfileBinding.inflate(layoutInflater, container,false)
+
+        var toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+        val activity : AppCompatActivity = getActivity() as AppCompatActivity
+        activity.setSupportActionBar(toolbar)
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.container, Home()).commit()
+        }
+
+        binding.button.setOnClickListener {
+            val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+            val editor = sharedPreference?.edit()
+            editor?.putString("mail", "")
+            editor?.apply()
+            findNavController().navigate(R.id.action_userPage_to_splashScreen1)
+        }
+
+        return binding.root
     }
 
     companion object {

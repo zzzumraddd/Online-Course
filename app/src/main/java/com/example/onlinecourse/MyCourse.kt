@@ -55,6 +55,9 @@ class MyCourse : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickLis
         binding.menues.setAdapter(menuAdapter)
         binding.courses.setAdapter(Adapter)
 
+        binding.cardView.setOnClickListener {
+            filterList("", Adapter)
+        }
 
         return binding.root
     }

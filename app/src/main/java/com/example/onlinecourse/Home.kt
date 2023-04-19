@@ -75,12 +75,12 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
             filterList("", courseAdapter)
         }
 
+
         binding.searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterList(newText, courseAdapter)
                 return true
