@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_signIn_to_userPage"
             app:destination="@id/userPage" />
+        <action
+            android:id="@+id/action_signIn_to_userPage2"
+            app:destination="@id/userPage" />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -84,6 +87,9 @@
             app:destination="@id/createAcc3" />
         <action
             android:id="@+id/action_signUp_to_userPage"
+            app:destination="@id/userPage" />
+        <action
+            android:id="@+id/action_signUp_to_userPage2"
             app:destination="@id/userPage" />
     </fragment>
     <fragment

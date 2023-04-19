@@ -1,10 +1,12 @@
 package com.example.onlinecourse
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentSignUpBinding
@@ -39,6 +41,19 @@ class SignUp : Fragment() {
         binding.signin.setOnClickListener {
             findNavController().navigate(R.id.action_signUp_to_signIn)
         }
+
+        var text = binding.name.toString()
+        binding.signup.setOnClickListener {
+            val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+            val name = sharedPreference?.getString("mail", "")
+            if(!name.equals(text)){
+                Toast.makeText(requireContext(),"wrong mail",Toast.LENGTH_SHORT).show()
+            }else{
+                findNavController().navigate(R.id.action_signUp_to_userPage)
+            }
+        }
+
+
         return binding.root
     }
 

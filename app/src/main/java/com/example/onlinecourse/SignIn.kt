@@ -46,6 +46,8 @@ class SignIn : Fragment() {
             val editor = sharedPreference?.edit()
             editor?.putString("mail", text)
             editor?.apply()
+
+            findNavController().navigate(R.id.action_signIn_to_userPage)
         }
 
 
