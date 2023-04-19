@@ -46,15 +46,15 @@
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <ImageView
-            android:id="@+id/marks"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/baseline_bookmark_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/marks"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:src="@drawable/baseline_bookmark_24"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <ImageView
             android:id="@+id/notication"
@@ -63,17 +63,17 @@
             android:layout_margin="10dp"
             android:src="@drawable/baseline_notifications_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/marks"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/searchcard"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
         app:cardCornerRadius="15dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
@@ -100,15 +100,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/offers"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
-        tools:listitem="@layout/offers_item"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="15dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchcard" />
+        app:layout_constraintTop_toBottomOf="@+id/searchcard"
+        tools:listitem="@layout/offers_item" />
 
     <TextView
         android:textColor="@color/black"
@@ -130,12 +132,12 @@
         android:fontFamily="@font/poppins"
         android:text="See All"
         android:textColor="#3F51B5"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/mentors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offers" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/mentors"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_margin="20dp"
@@ -155,7 +157,7 @@
         android:layout_height="wrap_content"
         android:text="Most Popular Courses"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/mentors" />
 
     <TextView
         android:fontFamily="@font/poppins"
@@ -166,5 +168,64 @@
         android:layout_height="wrap_content"
         android:text="See All"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/mentors" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#3F51B5">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="All🔥"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/menuitem"
+        android:id="@+id/menues"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="280dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:id="@+id/courses"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_height="160dp"
+        tools:listitem="@layout/courseitem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menues" />
 </androidx.constraintlayout.widget.ConstraintLayout>

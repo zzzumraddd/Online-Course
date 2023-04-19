@@ -5,27 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.navigation.fragment.findNavController
+import com.example.onlinecourse.databinding.FragmentHomeBinding
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+lateinit var courses : MutableList<Courseitem>
+lateinit var courseAdapter: CourseAdapter
+lateinit var mutableList: MutableList<Courseitem>
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Home : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
+
+class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListener {
+
+    private var param1: MutableList<Courseitem>? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getSerializable(ARG_PARAM1) as MutableList<Courseitem>
+
         }
     }
 
@@ -33,27 +34,122 @@ class Home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        var binding = FragmentHomeBinding.inflate(inflater, container, false)
+        var list = mutableListOf<OfferItem>()
+        var mentors = mutableListOf<MentorItem>()
+        var menues = mutableListOf<String>("Business \uD83D\uDCB0", "UX/UI Design \uD83D\uDCA1", "3D Design", "Mobile")
+        courses = mutableListOf<Courseitem>()
+
+
+        list.add(OfferItem("Get a discount for every course order! Only valid for today", "40%", "Today's Special"))
+        list.add(OfferItem("Get a discount for every course order! Only valid for today", "40%", "Today's Special"))
+        list.add(OfferItem("Get a discount for every course order! Only valid for today", "40%", "Today's Special"))
+
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+        mentors.add(MentorItem(R.drawable.mentor, "Jacob") )
+
+        courses.add(Courseitem(R.drawable.course, "3D Design Course", "3D Design", false))
+        courses.add(Courseitem(R.drawable.business, "Business Course", "Business \uD83D\uDCB0", false))
+        courses.add(Courseitem(R.drawable.business, "Design Course", "UX/UI Design \uD83D\uDCA1", false))
+        courses.add(Courseitem(R.drawable.course, "Mobile Course", "Mobile", false))
+
+
+
+        var offerAdapter = OfferAdapter(list)
+        var mentorAdapter = MentorAdapter(mentors)
+        var menuAdapter = MenuAdapter(menues, this@Home)
+        courseAdapter = CourseAdapter(courses, this@Home)
+        binding.offers.setAdapter(offerAdapter)
+        binding.mentors.setAdapter(mentorAdapter)
+        binding.menues.setAdapter(menuAdapter)
+        binding.courses.setAdapter(courseAdapter)
+
+        binding.cardView.setOnClickListener {
+            filterList("", courseAdapter)
+        }
+
+        binding.searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText, courseAdapter)
+                return true
+            }
+
+
+        })
+
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             Home().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable(ARG_PARAM1, param1)
                 }
             }
     }
+
+    override fun onClick(position: Int) {
+        when(position){
+            0 ->  filterList2("Business \uD83D\uDCB0", courseAdapter)
+            1 ->   filterList2("UX/UI Design \uD83D\uDCA1",courseAdapter)
+            2 -> filterList2("3D Design", courseAdapter)
+            3 -> filterList2("Mobile", courseAdapter)
+        }
+
+    }
+
+    override fun Click(position: Int) {
+        findNavController().navigate(R.id.action_userPage_to_coursePage)
+    }
+
+    private fun filterList(query: String?, adapter:CourseAdapter){
+        if(query != null){
+            val filteredList = ArrayList<Courseitem>()
+            for(i in courses){
+                if(i.name.toLowerCase(Locale.ROOT).contains(query)){
+                    filteredList.add(i)
+                }
+            }
+            if(filteredList.isEmpty()){
+
+            }else{
+                adapter.FilteredList(filteredList)
+            }
+        }
+    }
+
+    private fun filterList2(query: String?, adapter: CourseAdapter){
+        if(query != null){
+            val filteredList = ArrayList<Courseitem>()
+            for(i in courses){
+                if(i.type.contains(query)){
+                    filteredList.add(i)
+                }
+            }
+            if(filteredList.isEmpty()){
+
+            }else{
+                adapter.FilteredList(filteredList)
+            }
+        }
+    }
+
+
+
+
 }

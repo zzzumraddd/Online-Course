@@ -96,5 +96,18 @@
         android:id="@+id/userPage"
         android:name="com.example.onlinecourse.UserPage"
         android:label="fragment_user_page"
-        tools:layout="@layout/fragment_user_page" />
+        tools:layout="@layout/fragment_user_page" >
+        <action
+            android:id="@+id/action_userPage_to_coursePage"
+            app:destination="@id/coursePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/coursePage"
+        android:name="com.example.onlinecourse.CoursePage"
+        android:label="fragment_course_page"
+        tools:layout="@layout/fragment_course_page" >
+        <action
+            android:id="@+id/action_coursePage_to_userPage"
+            app:destination="@id/userPage" />
+    </fragment>
 </navigation>
