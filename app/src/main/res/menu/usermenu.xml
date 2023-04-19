@@ -12,7 +12,15 @@
         android:id="@+id/mycourse"
         />
     <item android:title="Inbox"
+        android:id="@+id/inbox"
+        android:icon="@drawable/ic_baseline_inbox_24"
         />
-    <item android:title="Item" />
-    <item android:title="Item" />
+    <item android:title="Transaction"
+        android:id="@+id/transaction"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        />
+    <item android:title="Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        />
 </menu>
