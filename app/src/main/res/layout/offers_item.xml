@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
+    android:layout_width="360dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginLeft="15dp"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="30dp">
@@ -12,7 +14,7 @@
     >
 
     <TextView
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:id="@+id/today"
@@ -50,8 +52,11 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/today"
+        android:fontFamily="@font/poppins"
+        android:text="40%"
+        android:textColor="@color/white"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/today"
         app:layout_constraintTop_toTopOf="parent" />
