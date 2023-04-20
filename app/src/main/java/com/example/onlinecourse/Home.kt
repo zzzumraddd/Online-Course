@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentHomeBinding
 import java.util.Locale
@@ -14,18 +15,18 @@ import java.util.Locale
 private const val ARG_PARAM1 = "param1"
 lateinit var courses : MutableList<Courseitem>
 lateinit var courseAdapter: CourseAdapter
-lateinit var mutableList: MutableList<Courseitem>
+lateinit var courseitem: Courseitem
 
 
-class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListener {
+class Home : Fragment(), MenuAdapter.MyClickListener {
 
-    private var param1: MutableList<Courseitem>? = null
+    private var param1: Courseitem? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getSerializable(ARG_PARAM1) as MutableList<Courseitem>
+            param1 = it.getSerializable(ARG_PARAM1) as Courseitem
 
         }
     }
@@ -37,6 +38,7 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
         var binding = FragmentHomeBinding.inflate(inflater, container, false)
         var list = mutableListOf<OfferItem>()
         var mentors = mutableListOf<MentorItem>()
+        var savedElements = mutableListOf<Courseitem>()
         var menues = mutableListOf<String>("Business \uD83D\uDCB0", "UX/UI Design \uD83D\uDCA1", "3D Design", "Mobile")
         courses = mutableListOf<Courseitem>()
 
@@ -65,7 +67,12 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
         var offerAdapter = OfferAdapter(list)
         var mentorAdapter = MentorAdapter(mentors)
         var menuAdapter = MenuAdapter(menues, this@Home)
-        courseAdapter = CourseAdapter(courses, this@Home)
+        courseAdapter = CourseAdapter(courses,object : CourseAdapter.ClickListener{
+            override fun Click(courseitem: Courseitem) {
+                val bundle = bundleOf("courseItem" to courseitem)
+                findNavController().navigate(R.id.action_userPage_to_coursePage, bundle)
+            }
+        })
         binding.offers.setAdapter(offerAdapter)
         binding.mentors.setAdapter(mentorAdapter)
         binding.menues.setAdapter(menuAdapter)
@@ -88,14 +95,13 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
 
 
         })
-
         return binding.root
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(param1: Courseitem?) =
             Home().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PARAM1, param1)
@@ -113,9 +119,7 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
 
     }
 
-    override fun Click(position: Int) {
-        findNavController().navigate(R.id.action_userPage_to_coursePage)
-    }
+
 
     private fun filterList(query: String?, adapter:CourseAdapter){
         if(query != null){
@@ -146,6 +150,9 @@ class Home : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListene
             }else{
                 adapter.FilteredList(filteredList)
             }
+
+
+
         }
     }
 

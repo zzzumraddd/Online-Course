@@ -36,6 +36,9 @@ class CoursePage : Fragment() {
     ): View? {
         val binding = FragmentCoursePageBinding.inflate(inflater, container, false)
         parentFragmentManager.beginTransaction().add(R.id.container, About()).commit()
+        val courseutem = arguments?.getSerializable("courseItem") as Courseitem
+
+        binding.textView18.text = courseutem.name
 
         binding.bottomNavigationView2.setOnNavigationItemSelectedListener {
             when(it.itemId){

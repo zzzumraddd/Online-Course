@@ -24,12 +24,14 @@ class CourseAdapter(var list: MutableList<Courseitem>, val listener: ClickListen
         val delete = binding.imageView11
         val card = binding.card
 
-        init {
+
+
+       /* init {
             binding.root.setOnClickListener {
                 val position = adapterPosition
-                listener.Click(position)
+                listener.Click()
             }
-        }
+        }*/
 
     }
 
@@ -46,18 +48,19 @@ class CourseAdapter(var list: MutableList<Courseitem>, val listener: ClickListen
         holder.type.text = list.get(position).type
         holder.image.setImageResource(list.get(position).image)
 
-        holder.fav.setOnClickListener {
+        holder.card.setOnClickListener {
             list.get(position).status = true
+            listener.Click(list[position])
         }
 
-        holder.delete.setOnClickListener {
-            list.remove(list.get(position))
-            notifyDataSetChanged()
-        }
+//        holder.delete.setOnClickListener {
+//            list.remove(list.get(position))
+//            notifyDataSetChanged()
+//        }
 
     }
 
     interface ClickListener{
-        fun Click(position: Int)
+        fun Click(courseitem: Courseitem)
     }
 }

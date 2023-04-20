@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentMyCourseBinding
 import java.util.Locale
@@ -16,7 +17,7 @@ lateinit var course : MutableList<Courseitem>
 lateinit var Adapter: CourseAdapter
 
 
-class MyCourse : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickListener {
+class MyCourse : Fragment(), MenuAdapter.MyClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -51,7 +52,13 @@ class MyCourse : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickLis
         course.add(Courseitem(R.drawable.business, "Design Course", "UX/UI Design \uD83D\uDCA1", false))
         course.add(Courseitem(R.drawable.course, "Mobile Course", "Mobile", false))
         var menuAdapter = MenuAdapter(menu, this@MyCourse)
-        Adapter = CourseAdapter(course, this@MyCourse)
+        Adapter = CourseAdapter(course, object : CourseAdapter.ClickListener {
+            override fun Click(courseitem: Courseitem) {
+                val bundle = bundleOf("courseItem" to courseitem)
+                findNavController().navigate(R.id.action_userPage_to_coursePage, bundle)
+            }
+
+        })
         binding.menues.setAdapter(menuAdapter)
         binding.courses.setAdapter(Adapter)
 
@@ -114,7 +121,5 @@ class MyCourse : Fragment(), MenuAdapter.MyClickListener, CourseAdapter.ClickLis
         }
     }
 
-    override fun Click(position: Int) {
-        findNavController().navigate(R.id.action_userPage_to_coursePage)
-    }
+
 }
