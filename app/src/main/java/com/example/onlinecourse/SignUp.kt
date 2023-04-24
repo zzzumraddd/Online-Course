@@ -42,7 +42,7 @@ class SignUp : Fragment() {
             findNavController().navigate(R.id.action_signUp_to_signIn)
         }
 
-        var text = binding.name.toString()
+        var text = binding.name.text.toString()
         binding.signup.setOnClickListener {
             val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
             val name = sharedPreference?.getString("mail", "")

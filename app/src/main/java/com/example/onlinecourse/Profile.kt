@@ -1,14 +1,17 @@
 package com.example.onlinecourse
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentProfileBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,13 +49,39 @@ class Profile : Fragment() {
         toolbar.setNavigationOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, Home()).commit()
         }
+        val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val name = sharedPreference?.getString("mail","").toString()
+
+        binding.name.setText(name)
 
         binding.button.setOnClickListener {
-            val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
-            val editor = sharedPreference?.edit()
-            editor?.putString("mail", "")
-            editor?.apply()
-            findNavController().navigate(R.id.action_userPage_to_splashScreen1)
+             MaterialAlertDialogBuilder(requireContext()).setTitle("Alert").setMessage("Do you want to delete your account?").setPositiveButton("Yes"
+             ) { p0, p1 ->
+                 val editor = sharedPreference?.edit()
+                 editor?.putString("mail", "")
+                 editor?.apply()
+                 findNavController().navigate(R.id.action_userPage_to_splashScreen1)
+             }
+                 .setNegativeButton("No", object : DialogInterface.OnClickListener {
+                     override fun onClick(p0: DialogInterface?, p1: Int) {
+                         Toast.makeText(requireContext(), "You don't log out", Toast.LENGTH_SHORT).show()
+                     }
+                 })
+                 .show()
+
+        }
+        binding.button2.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext()).setTitle("Alert").setMessage("Do you want to delete your account?").setPositiveButton("Yes"
+            ) { p0, p1 ->
+                findNavController().navigate(R.id.action_userPage_to_splashScreen1)
+            }
+                .setNegativeButton("No", object : DialogInterface.OnClickListener {
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        Toast.makeText(requireContext(), "Your account will not be deleted", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                .show()
+
         }
 
         return binding.root

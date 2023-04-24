@@ -111,8 +111,8 @@ class Home : Fragment(), MenuAdapter.MyClickListener {
 
     override fun onClick(position: Int) {
         when(position){
-            0 ->  filterList2("Business \uD83D\uDCB0", courseAdapter)
-            1 ->   filterList2("UX/UI Design \uD83D\uDCA1",courseAdapter)
+            0 -> filterList2("Business \uD83D\uDCB0", courseAdapter)
+            1 -> filterList2("UX/UI Design \uD83D\uDCA1",courseAdapter)
             2 -> filterList2("3D Design", courseAdapter)
             3 -> filterList2("Mobile", courseAdapter)
         }

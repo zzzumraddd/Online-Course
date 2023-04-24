@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentTransactionBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +37,9 @@ class Transaction : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentTransactionBinding.inflate(layoutInflater, container,false)
+        val purchases = mutableListOf<Courseitem>()
+        val item = arguments?.getSerializable("Item") as Courseitem
+        purchases.add(item)
         var toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
         val activity : AppCompatActivity = getActivity() as AppCompatActivity
         activity.setSupportActionBar(toolbar)
@@ -43,7 +47,13 @@ class Transaction : Fragment() {
         toolbar.setNavigationOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.container, Home()).commit()
         }
-        // Inflate the layout for this fragment
+
+
+
+
+        val adapter = CouseAdaoper2(purchases)
+        binding.rv.setAdapter(adapter)
+
         return binding.root
     }
 

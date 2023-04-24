@@ -2,6 +2,7 @@ package com.example.onlinecourse
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,8 +41,9 @@ class SignIn : Fragment() {
     ): View? {
         var binding = FragmentSignInBinding.inflate(inflater, container, false)
 
-        var text = binding.name.toString()
+
         binding.signin.setOnClickListener {
+            var text = binding.name.text.toString()
             val sharedPreference = this.getActivity()?.getSharedPreferences("pref", Context.MODE_PRIVATE)
             val editor = sharedPreference?.edit()
             editor?.putString("mail", text)
