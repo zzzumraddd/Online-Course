@@ -41,8 +41,8 @@ class CoursePage : Fragment() {
 
         binding.textView18.text = courseutem.name
         binding.button4.setOnClickListener {
-            val bundlee = bundleOf("Item" to courseutem)
-            findNavController().navigate(R.id.action_userPage_to_coursePage, bundlee)
+            //val bundlee = bundleOf("Item" to courseutem)
+            //findNavController().navigate(R.id.action_userPage_to_coursePage, bundlee)
         }
 
         binding.bottomNavigationView2.setOnNavigationItemSelectedListener {

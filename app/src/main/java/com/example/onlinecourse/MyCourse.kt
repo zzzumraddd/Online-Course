@@ -1,20 +1,24 @@
 package com.example.onlinecourse
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.onlinecourse.databinding.FragmentMyCourseBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Locale
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 lateinit var course : MutableList<Courseitem>
 lateinit var Adapter: CourseAdapter
+lateinit var dialog: BottomSheetDialog
 
 
 class MyCourse : Fragment(), MenuAdapter.MyClickListener {
@@ -64,6 +68,10 @@ class MyCourse : Fragment(), MenuAdapter.MyClickListener {
 
         binding.cardView.setOnClickListener {
             filterList("", Adapter)
+        }
+
+        binding.imageView10.setOnClickListener {
+            showBottomSheet()
         }
 
         return binding.root
@@ -119,6 +127,50 @@ class MyCourse : Fragment(), MenuAdapter.MyClickListener {
             2 -> filterList2("3D Design", Adapter)
             3 -> filterList2("Mobile", Adapter)
         }
+    }
+
+    private fun showBottomSheet() {
+        val dialogView = layoutInflater.inflate(R.layout.bottom_dialogue, null)
+        dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+        dialog.setContentView(dialogView)
+        val business = dialogView.findViewById<ConstraintLayout>(R.id.business)
+        val design = dialogView.findViewById<ConstraintLayout>(R.id.design)
+        val mobile =dialogView.findViewById<ConstraintLayout>(R.id.mobile)
+        val all =dialogView.findViewById<ConstraintLayout>(R.id.all)
+        business.setOnClickListener {
+            filterList2("Business \uD83D\uDCB0", Adapter)
+            business.setBackgroundColor(Color.BLUE)
+            mobile.setBackgroundColor(Color.WHITE)
+            all.setBackgroundColor(Color.WHITE)
+            design.setBackgroundColor(Color.WHITE)
+
+        }
+
+        design.setOnClickListener {
+            filterList2("UX/UI Design \uD83D\uDCA1", Adapter)
+            design.setBackgroundColor(Color.BLUE)
+            mobile.setBackgroundColor(Color.WHITE)
+            all.setBackgroundColor(Color.WHITE)
+            business.setBackgroundColor(Color.WHITE)
+        }
+
+        mobile.setOnClickListener {
+            filterList2("Mobile", Adapter)
+            mobile.setBackgroundColor(Color.BLUE)
+            business.setBackgroundColor(Color.WHITE)
+            all.setBackgroundColor(Color.WHITE)
+            design.setBackgroundColor(Color.WHITE)
+        }
+
+        all.setOnClickListener {
+            filterList("", Adapter)
+            all.setBackgroundColor(Color.BLUE)
+            mobile.setBackgroundColor(Color.WHITE)
+            business.setBackgroundColor(Color.WHITE)
+            design.setBackgroundColor(Color.WHITE)
+        }
+
+        dialog.show()
     }
 
 
