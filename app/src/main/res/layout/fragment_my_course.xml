@@ -6,6 +6,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MyCourse">
 
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="15dp"
+        android:id="@+id/searchcard"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultQueryHint="Seacrh"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="Search" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:id="@+id/imageView10"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_list_24"
+
+        app:layout_constraintStart_toEndOf="@+id/searchcard"
+        app:layout_constraintTop_toTopOf="@+id/searchcard" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -51,12 +82,12 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
         android:id="@+id/menues"
         android:layout_width="280dp"
         android:layout_height="30dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/searchcard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -72,7 +103,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menues"
+
+        app:layout_constraintTop_toBottomOf="@+id/searchcard"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/courseitem" />
 
