@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_splash_screen1" >
         <action
             android:id="@+id/action_splashScreen1_to_splashScreen2"
-            app:destination="@id/splashScreen2" />
+            app:destination="@id/splashScreen2"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/anim_left"
+            app:popExitAnim="@anim/anim_right" />
         <action
             android:id="@+id/action_splashScreen1_to_userPage"
             app:destination="@id/userPage" />
